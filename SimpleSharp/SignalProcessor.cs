@@ -11,13 +11,26 @@ namespace VTProIntigrationTestSimpleSharp
 {
     internal static class SignalProcessor
     {
+        /// <summary>
+        /// Processes any signal changes that occur from touchPanels or other interactive devices.
+        /// </summary>
+        /// <param name="device">The Device that called the signal change.</param>
+        /// <param name="args">The signal that changed.</param> 
         public static void ProcessSignalChange(BasicTriList device, SigEventArgs args)
         {
-            switch(args.Sig.Type)
+            // Check if the device is null to avoid null reference exceptions.
+            if (device == null)
+            {
+                CrestronConsole.PrintLine("Device is null, cannot process signal change.", nameof(device));
+                return;
+            }
+
+            // Check what type of signal has changed and process accordingly.
+            switch (args.Sig.Type)
             {
                 case eSigType.NA: // Unrecognized Input
-
-                    break;
+                    CrestronConsole.PrintLine("Device is null, cannot process signal change.", nameof(device));
+                    return;
 
                 case eSigType.Bool: // Digital Input
 
@@ -87,10 +100,15 @@ namespace VTProIntigrationTestSimpleSharp
                     break;  
 
                 default:
-                    break;
+                    CrestronConsole.PrintLine("Device is null, cannot process signal change.", nameof(device));
+                    return;
             }
         }
 
+        /// <summary>
+        /// 
+        ///</summary>
+        /// <param name="device">The Touchpanel logic to Initialize </param>
         public static void Initialize(BasicTriList device)
         {
             device.BooleanInput[24].BoolValue = false; // Enable Digital Join For Time Button

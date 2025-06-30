@@ -10,27 +10,39 @@ namespace VTProIntigrationTestSimpleSharp
 {
     public class ControlSystem : CrestronControlSystem
     {
-        XpanelForHtml5 xPanelOne;
 
+        /// <summary>
+        /// Declare the XPanel for Smart Graphics device, Can be any touchpanel but ive chosen XpanelForSmartGraphics for this example.
+        /// </summary>
+        XpanelForSmartGraphics xPanelOne;
+
+        /// <summary>
+        /// The entry point for the simple sharp application.
+        /// </summary>
         public ControlSystem() : base()
         {
             try
             {
+
+                // Set the thread pool size for user threads.
                 Thread.MaxNumberOfUserThreads = 20;
 
-                xPanelOne = new XpanelForHtml5(0x03, this);
-                xPanelOne.SigChange += XPanelOne_SigChange;
+                // Initialize the XPanel.
+                xPanelOne = new XpanelForSmartGraphics(0x03, this);
 
+                // Subscribe to the events for the XPanel.
+                xPanelOne.SigChange += XPanelOne_SigChange;
                 xPanelOne.OnlineStatusChange += XPanelOne_OnlineStatusChange;
 
+
+                // Ensure the XPanel is registered with the system and ready to use.
                 if (xPanelOne.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
                 {
-                    throw new ArgumentException($"Xpanel Failed to register correctly: {xPanelOne.ID}", nameof(xPanelOne));
+                    throw new ArgumentException($"XPanel Failed to register correctly: {xPanelOne.ID}", nameof(xPanelOne));
                 }
 
-                //Subscribe to the controller events (Program, and Ethernet)
+                // Subscribe to the program status event handler.
                 CrestronEnvironment.ProgramStatusEventHandler += new ProgramStatusEventHandler(_ControllerProgramEventHandler);
-                CrestronEnvironment.EthernetEventHandler += new EthernetEventHandler(_ControllerEthernetEventHandler);
             }
             catch (Exception e)
             {
@@ -42,6 +54,8 @@ namespace VTProIntigrationTestSimpleSharp
         /// <summary> 
         /// This method is called when the XPanel's Online Status changes.
         /// </summary>
+        /// <param name="currentDevice">The Device that changed its online status.</param>
+        /// <param name="args">The online status.</param>
         private void XPanelOne_OnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
         {
             string onlineStatus;
@@ -61,13 +75,11 @@ namespace VTProIntigrationTestSimpleSharp
         /// <summary>
         /// This method is called when a signal changes on the XPanel.
         /// </summary>
+        /// <param name="currentDevice">The Device that had a signal change.</param>
+        /// <param name="args">The signal that changed on the XPanel.</param>
         private void XPanelOne_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
-            if (currentDevice == xPanelOne)
-            {
-                SignalProcessor.ProcessSignalChange(currentDevice, args);
-            }
-               
+            SignalProcessor.ProcessSignalChange(currentDevice, args); 
         }
 
         public override void InitializeSystem()
@@ -82,27 +94,12 @@ namespace VTProIntigrationTestSimpleSharp
             }
         }
 
-        void _ControllerEthernetEventHandler(EthernetEventArgs ethernetEventArgs)
-        {
-            switch (ethernetEventArgs.EthernetEventType)
-            {//Determine the event type Link Up or Link Down
-                case (eEthernetEventType.LinkDown):
-                    //Next need to determine which adapter the event is for. 
-                    //LAN is the adapter is the port connected to external networks.
-                    if (ethernetEventArgs.EthernetAdapter == EthernetAdapterType.EthernetLANAdapter)
-                    {
-                        //
-                    }
-                    break;
-                case (eEthernetEventType.LinkUp):
-                    if (ethernetEventArgs.EthernetAdapter == EthernetAdapterType.EthernetLANAdapter)
-                    {
 
-                    }
-                    break;
-            }
-        }
 
+        /// <summary>
+        /// Handles program status events from the controller.
+        /// </summary>
+        /// <param name="programStatusEventType">The event that changed eg. Paused, Resumed, and Stopping</param>
         void _ControllerProgramEventHandler(eProgramStatusEventType programStatusEventType)
         {
             switch (programStatusEventType)
