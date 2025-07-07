@@ -136,13 +136,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Src\Collections\Pages\MediaPage.cs" />
+    <Compile Include="Src\Collections\SubPages\CurtanManagmentPage.cs" />
+    <Compile Include="Src\Collections\SubPages\TVManagmentPage.cs" />
     <Compile Include="Src\Service\ControlSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Src\Collections\JoinSet.cs" />
+    <Compile Include="Src\Collections\Pages\MainPage.cs" />
     <Compile Include="Src\Utility\SignalProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="XpanelIntigration.sgd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

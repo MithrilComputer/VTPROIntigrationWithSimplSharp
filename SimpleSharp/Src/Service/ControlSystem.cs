@@ -5,6 +5,8 @@ using Crestron.SimplSharpPro.CrestronThread;        	// For Threading
 using Crestron.SimplSharpPro.Diagnostics;		    	// For System Monitor Access
 using Crestron.SimplSharpPro.DeviceSupport;         	// For Generic Device Support
 using Crestron.SimplSharpPro.UI;
+using System.IO;
+using System.ComponentModel;
 
 namespace VTProIntegrationsTestSimpleSharp
 {
@@ -16,6 +18,11 @@ namespace VTProIntegrationsTestSimpleSharp
         /// </summary>
         XpanelForSmartGraphics xPanelOne;
 
+        ///<summary> Ignore for now, 
+        ///Location of the SDG file for the XPanel.
+        ///</summary>
+        string SDGFile = Path.Combine(Directory.GetCurrentDirectory(), "XpanelIntigration.sgd");
+
         /// <summary>
         /// The entry point for the simple sharp application.
         /// </summary>
@@ -23,22 +30,14 @@ namespace VTProIntegrationsTestSimpleSharp
         {
             try
             {
-
                 // Set the thread pool size for user threads.
                 Thread.MaxNumberOfUserThreads = 20;
 
-                // Initialize the XPanel.
+                // Initialize the XPanel for Smart Graphics with an IPID of 0x03.
                 xPanelOne = new XpanelForSmartGraphics(0x03, this);
 
-                // Subscribe to the events for the XPanel.
-                xPanelOne.SigChange += XPanelOne_SigChange;
-                xPanelOne.OnlineStatusChange += XPanelOne_OnlineStatusChange;
-
-                // Ensure the XPanel is registered with the system and ready to use.
-                if (xPanelOne.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
-                {
-                    throw new ArgumentException($"XPanel Failed to register correctly: {xPanelOne.ID}", nameof(xPanelOne));
-                }
+                // Register the XPanel and smart Graphics.
+                SetupSmartPanel(xPanelOne, SDGFile);
 
                 // Subscribe to the program status event handler.
                 CrestronEnvironment.ProgramStatusEventHandler += new ProgramStatusEventHandler(_ControllerProgramEventHandler);
@@ -49,13 +48,42 @@ namespace VTProIntegrationsTestSimpleSharp
             }
         }
 
+        /// <summary>
+        /// Configures a Smart Graphics panel by registering it, subscribing to events, and loading its SGD file.
+        /// </summary>
+        /// <param name="SGDfile">The Smart Graphics definition file path.</param>
+        /// <param name="IPID">The IPID to assign to the XPanel.</param>
+        /// <returns>The initialized and registered XpanelForSmartGraphics object.</returns>
+        private void SetupSmartPanel(BasicTriListWithSmartObject panel, string SGDfile)
+        {
+            // Subscribe to the events for the XPanel.
+            panel.SigChange += XPanel_SigChange;
+            panel.OnlineStatusChange += XPanel_OnlineStatusChange;
+
+            // Ensure the XPanel is registered with the system and ready to use.
+            if (panel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
+            {
+                throw new ArgumentException($"XPanel Failed to register correctly: {panel.ID}");
+            }
+
+            // Set the XPanel to use the SDG file.
+            // Check if the SDG file exists before loading it.
+            if (!File.Exists(SGDfile))
+            {
+                throw new FileNotFoundException($"SDG file not found: {SGDfile};");
+            }
+            else if (panel.LoadSmartObjects(SGDfile) <= 0)
+            {
+                throw new WarningException($"Failed to load smart object -> File: {SGDfile}; Device: {panel.Name};");
+            }
+        }
 
         /// <summary> 
         /// This method is called when the XPanel's Online Status changes.
         /// </summary>
         /// <param name="currentDevice">The Device that changed its online status.</param>
         /// <param name="args">The online status.</param>
-        private void XPanelOne_OnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
+        private void XPanel_OnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
         {
             string onlineStatus;
 
@@ -76,7 +104,7 @@ namespace VTProIntegrationsTestSimpleSharp
         /// </summary>
         /// <param name="currentDevice">The Device that had a signal change.</param>
         /// <param name="args">The signal that changed on the XPanel.</param>
-        private void XPanelOne_SigChange(BasicTriList currentDevice, SigEventArgs args)
+        private void XPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
             SignalProcessor.ProcessSignalChange(currentDevice, args); 
         }
@@ -102,21 +130,53 @@ namespace VTProIntegrationsTestSimpleSharp
             switch (programStatusEventType)
             {
                 case (eProgramStatusEventType.Paused):
-                    //The program has been paused.  Pause all user threads/timers as needed.
+                    // Not used in this example, but you can use it to pause threads or timers.
                     break;
                 case (eProgramStatusEventType.Resumed):
-                    //The program has been resumed. Resume all the user threads/timers as needed.
+                    // Not used in this example, but you can use it to resume any paused threads or timers.
                     break;
                 case (eProgramStatusEventType.Stopping):
+                    
                     //The program has been stopped.
-                    //Close all threads. 
-                    //Shutdown all Client/Servers in the system.
+                    CrestronConsole.PrintLine("Program stopping, cleaning up...");
+
+                    //Close all threads, Not used in this example.
+
+                    //Shutdown all Client/Servers in the system. Not used in this example.
+
                     //General cleanup.
+
+                    // If the XPanel is not null and registered, unregister and dispose of it.
+                    CleanUp();
+
                     //Unsubscribe to all System Monitor events
+                    CrestronEnvironment.ProgramStatusEventHandler -= _ControllerProgramEventHandler;
+
+                    CrestronConsole.PrintLine("Cleanup finished, exiting.");
                     break;
             }
 
         }
 
+        private void CleanUp()
+        {
+            // Clean up the XPanel if it exists and is registered.
+            if (xPanelOne != null && xPanelOne.Registered)
+            {
+                // Unsubscribe to all XPanel events.
+                xPanelOne.SigChange -= XPanel_SigChange;
+                xPanelOne.OnlineStatusChange -= XPanel_OnlineStatusChange;
+                CrestronConsole.PrintLine("Unsubscribed from XPanelOne events");
+
+                //Unregister the XPanel from the system.
+                xPanelOne.UnRegister();
+                CrestronConsole.PrintLine("Unregistered XPanelOne");
+
+                // Dispose of the XPanel object.
+                xPanelOne.Dispose();
+                xPanelOne = null;
+                CrestronConsole.PrintLine("Disposed XPanelOne");
+            }
+        }
     }
 }

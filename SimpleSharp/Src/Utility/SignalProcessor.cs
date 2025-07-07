@@ -35,29 +35,29 @@ namespace VTProIntegrationsTestSimpleSharp
 
                 case eSigType.Bool: // Digital Input
 
-                    if (args.Sig.Number == (uint)JoinSet.DigitalJoins.TimeButtonPress)
+                    if (args.Sig.Number == (uint)MainPage.DigitalJoins.TimeButtonPress)
                     {
                         if (args.Sig.BoolValue == true)
                         {
                             CrestronConsole.PrintLine("Time Button Pressed");
 
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
                         }
                     }
 
-                    if (args.Sig.Number == (uint)JoinSet.DigitalJoins.WeatherButtonPress)
+                    if (args.Sig.Number == (uint)MainPage.DigitalJoins.WeatherButtonPress)
                     {
                         if (args.Sig.BoolValue == true)
                         {
                             CrestronConsole.PrintLine("Weather Button Pressed");
 
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.TimeButtonEnable, true); // Enable Digital Join For Time Button
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherButtonEnable, false); // Enable Digital Join For Weather Button
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherWidgetVisibility, true); // Visibility Digital Join for The Weather Widget
-                            SetDigitalJoin(device, JoinSet.DigitalJoins.DateAndTimeWidgetVisibility, false); // Visibility Digital Join for The Time Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, true); // Enable Digital Join For Time Button
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, false); // Enable Digital Join For Weather Button
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, true); // Visibility Digital Join for The Weather Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, false); // Visibility Digital Join for The Time Widget
                         }
                     }
 
@@ -65,21 +65,21 @@ namespace VTProIntegrationsTestSimpleSharp
 
                 case eSigType.UShort: // Analog Input
 
-                    if (args.Sig.Number == (uint)JoinSet.AnalogJoins.RedSliderTouchFeedback)
+                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.RedSliderTouchFeedback)
                     {
-                        SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipRed, args.Sig.UShortValue); // Red value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, args.Sig.UShortValue); // Red value for Color Chip
                         CrestronConsole.PrintLine($"Color Red Input Changed: {args.Sig.UShortValue}", nameof(args));
                     }
 
-                    if (args.Sig.Number == (uint)JoinSet.AnalogJoins.BlueSliderTouchFeedback)
+                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.BlueSliderTouchFeedback)
                     {
-                        SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipBlue, args.Sig.UShortValue); // Blue value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipBlue, args.Sig.UShortValue); // Blue value for Color Chip
                         CrestronConsole.PrintLine($"Color Blue Changed: {args.Sig.UShortValue}", nameof(args));
                     }
 
-                    if (args.Sig.Number == (uint)JoinSet.AnalogJoins.GreenSliderTouchFeedback)
+                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.GreenSliderTouchFeedback)
                     {
-                        SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipGreen, args.Sig.UShortValue); // Green value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, args.Sig.UShortValue); // Green value for Color Chip
                         CrestronConsole.PrintLine($"Color Green Changed: {args.Sig.UShortValue}", nameof(args));
                     }
 
@@ -87,9 +87,9 @@ namespace VTProIntegrationsTestSimpleSharp
 
                 case eSigType.String: // Serial Input
 
-                    if (args.Sig.Number == (uint)JoinSet.SerialJoins.TextEntryOutput)
+                    if (args.Sig.Number == (uint)MainPage.SerialJoins.TextEntryOutput)
                     {
-                        SetSerialJoin(device, JoinSet.SerialJoins.FormattedTextInput, args.Sig.StringValue); // Set the output serial to the input
+                        SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, args.Sig.StringValue); // Set the output serial to the input
 
                         CrestronConsole.PrintLine($"String Input Changed: {args.Sig.StringValue}", args);
                     }
@@ -108,18 +108,17 @@ namespace VTProIntegrationsTestSimpleSharp
         /// <param name="device">The Touchpanel logic to Initialize </param>
         public static void Initialize(BasicTriList device)
         {
-            SetDigitalJoin(device, JoinSet.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
-            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
-            SetDigitalJoin(device, JoinSet.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
-            SetDigitalJoin(device, JoinSet.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
+            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
+            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
+            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
+            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
 
-            SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipRed, 255);
-            SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipGreen, 255);
-            SetAnalogJoin(device, JoinSet.AnalogJoins.ColorChipBlue, 255);
+            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, 255);
+            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, 255);
+            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipBlue, 255);
 
-            SetSerialJoin(device, JoinSet.SerialJoins.FormattedTextInput, "Hello World!"); // Set the output serial to the input
+            SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, "Hello World!"); // Set the output serial to the input
         }
-
 
         /// <summary>
         /// Sets a digital join on the device.
@@ -127,7 +126,7 @@ namespace VTProIntegrationsTestSimpleSharp
         /// <param name="device"> The device to set the digital join on.</param>
         /// <param name="digitalJoin"> The digital join to set.</param>
         /// <param name="value"> The value to set the digital join to.</param>
-        private static void SetDigitalJoin(BasicTriList device, JoinSet.DigitalJoins digitalJoin, bool value)
+        private static void SetDigitalJoin(BasicTriList device, MainPage.DigitalJoins digitalJoin, bool value)
         {
             device.BooleanInput[(uint)digitalJoin].BoolValue = value;
         }
@@ -138,7 +137,7 @@ namespace VTProIntegrationsTestSimpleSharp
         /// <param name="device"> The device to set the analogJoin join on.</param>
         /// <param name="analogJoin"> The analogJoin join to set.</param>
         /// <param name="value"> The value to set the analogJoin join to.</param>
-        private static void SetAnalogJoin(BasicTriList device, JoinSet.AnalogJoins analogJoin, ushort value)
+        private static void SetAnalogJoin(BasicTriList device, MainPage.AnalogJoins analogJoin, ushort value)
         {
             device.UShortInput[(uint)analogJoin].UShortValue = value;
         }
@@ -149,7 +148,7 @@ namespace VTProIntegrationsTestSimpleSharp
         /// <param name="device"> The device to set the serial join on.</param>
         /// <param name="serialJoin"> The serial join to set.</param>
         /// <param name="value"> The value to set the serial join to.</param>
-        private static void SetSerialJoin(BasicTriList device, JoinSet.SerialJoins serialJoin, string value)
+        private static void SetSerialJoin(BasicTriList device, MainPage.SerialJoins serialJoin, string value)
         {
             device.StringInput[(uint)serialJoin].StringValue = value;
         }
