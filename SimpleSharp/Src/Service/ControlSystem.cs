@@ -158,6 +158,9 @@ namespace VTProIntegrationsTestSimpleSharp
 
         }
 
+        /// <summary>
+        /// Master cleanup method to unregister, dispose and clear used memory.
+        /// </summary>
         private void CleanUp()
         {
             // Clean up the XPanel if it exists and is registered.
