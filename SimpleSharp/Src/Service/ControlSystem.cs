@@ -2,11 +2,11 @@ using System;
 using Crestron.SimplSharp;                          	// For Basic SIMPL# Classes
 using Crestron.SimplSharpPro;                       	// For Basic SIMPL#Pro classes
 using Crestron.SimplSharpPro.CrestronThread;        	// For Threading
-using Crestron.SimplSharpPro.Diagnostics;		    	// For System Monitor Access
 using Crestron.SimplSharpPro.DeviceSupport;         	// For Generic Device Support
 using Crestron.SimplSharpPro.UI;
 using System.IO;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace VTProIntegrationsTestSimpleSharp
 {
@@ -76,6 +76,12 @@ namespace VTProIntegrationsTestSimpleSharp
             {
                 throw new WarningException($"Failed to load smart object -> File: {SGDfile}; Device: {panel.Name};");
             }
+
+            // subscribe to the SmartObject signal changes.
+            foreach (KeyValuePair<uint, SmartObject> pair in panel.SmartObjects)
+            {
+                pair.Value.SigChange += Xpanel_SmartGraphicsSigChange;
+            }
         }
 
         /// <summary> 
@@ -107,6 +113,16 @@ namespace VTProIntegrationsTestSimpleSharp
         private void XPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
             SignalProcessor.ProcessSignalChange(currentDevice, args); 
+        }
+
+        /// <summary>
+        /// This method is called when a signal changes specifically with Smart Graphics on the XPanel.
+        /// </summary>
+        /// <param name="currentDevice">The Device that had a signal change.</param>
+        /// <param name="args">The signal that changed on the XPanel's smart objects.</param>
+        private void Xpanel_SmartGraphicsSigChange(GenericBase currentDevice, SmartObjectEventArgs args)
+        {
+            SignalProcessor.ProcessSmartGraphicsChange(currentDevice, args);
         }
 
         public override void InitializeSystem()
@@ -145,7 +161,7 @@ namespace VTProIntegrationsTestSimpleSharp
                     //Shutdown all Client/Servers in the system. Not used in this example.
 
                     //General cleanup.
-
+          
                     // If the XPanel is not null and registered, unregister and dispose of it.
                     CleanUp();
 
@@ -155,7 +171,6 @@ namespace VTProIntegrationsTestSimpleSharp
                     CrestronConsole.PrintLine("Cleanup finished, exiting.");
                     break;
             }
-
         }
 
         /// <summary>

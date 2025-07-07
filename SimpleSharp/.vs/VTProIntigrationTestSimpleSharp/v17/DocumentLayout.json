@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\src\\service\\controlsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\service\\controlsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\service\\controlsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\utility\\signalprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\src\\utility\\signalprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\utility\\signalprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\src\\collections\\pages\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\collections\\pages\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\collections\\subpages\\curtanmanagmentpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\collections\\subpages\\curtanmanagmentpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\collections\\subpages\\tvmanagmentpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\collections\\subpages\\tvmanagmentpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\collections\\smartobjectdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\collections\\smartobjectdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\xpanelintigration.sgd||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:xpanelintigration.sgd||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +38,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 305,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SignalProcessor.cs",
-              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
-              "RelativeDocumentMoniker": "Src\\Utility\\SignalProcessor.cs",
-              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
-              "RelativeToolTip": "Src\\Utility\\SignalProcessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "SmartObjectDefinitions.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SmartObjectDefinitions.cs",
+              "RelativeDocumentMoniker": "Src\\Collections\\SmartObjectDefinitions.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SmartObjectDefinitions.cs",
+              "RelativeToolTip": "Src\\Collections\\SmartObjectDefinitions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T16:13:24.063Z",
+              "WhenOpened": "2025-07-07T16:24:41.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "XpanelIntigration.sgd",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\XpanelIntigration.sgd",
+              "RelativeDocumentMoniker": "XpanelIntigration.sgd",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\XpanelIntigration.sgd",
+              "RelativeToolTip": "XpanelIntigration.sgd",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-07T16:21:55.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TVManagmentPage.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SubPages\\TVManagmentPage.cs",
+              "RelativeDocumentMoniker": "Src\\Collections\\SubPages\\TVManagmentPage.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SubPages\\TVManagmentPage.cs",
+              "RelativeToolTip": "Src\\Collections\\SubPages\\TVManagmentPage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:02:17.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CurtanManagmentPage.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SubPages\\CurtanManagmentPage.cs",
+              "RelativeDocumentMoniker": "Src\\Collections\\SubPages\\CurtanManagmentPage.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\SubPages\\CurtanManagmentPage.cs",
+              "RelativeToolTip": "Src\\Collections\\SubPages\\CurtanManagmentPage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:01:16.421Z",
               "EditorCaption": ""
             },
             {
@@ -45,9 +100,23 @@
               "RelativeDocumentMoniker": "Src\\Collections\\Pages\\MainPage.cs",
               "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Collections\\Pages\\MainPage.cs",
               "RelativeToolTip": "Src\\Collections\\Pages\\MainPage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T16:11:28.022Z"
+              "WhenOpened": "2025-07-02T16:11:28.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SignalProcessor.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
+              "RelativeDocumentMoniker": "Src\\Utility\\SignalProcessor.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
+              "RelativeToolTip": "Src\\Utility\\SignalProcessor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T16:13:24.063Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -57,7 +126,7 @@
               "RelativeDocumentMoniker": "Src\\Service\\ControlSystem.cs",
               "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Service\\ControlSystem.cs",
               "RelativeToolTip": "Src\\Service\\ControlSystem.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAswK4AAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAwwLYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T15:56:47.352Z",
               "EditorCaption": ""

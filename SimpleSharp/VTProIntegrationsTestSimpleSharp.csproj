@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Src\Collections\Pages\MediaPage.cs" />
+    <Compile Include="Src\Collections\SmartObjectDefinitions.cs" />
     <Compile Include="Src\Collections\SubPages\CurtanManagmentPage.cs" />
     <Compile Include="Src\Collections\SubPages\TVManagmentPage.cs" />
     <Compile Include="Src\Service\ControlSystem.cs" />

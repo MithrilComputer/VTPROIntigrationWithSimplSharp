@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VTProIntegrationsTestSimpleSharp.Src.Collections
+﻿namespace VTProIntegrationsTestSimpleSharp.Src.Collections
 {
     /// <summary>
     /// a collection of logic join numbers for the page.

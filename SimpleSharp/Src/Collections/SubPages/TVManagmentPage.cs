@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VTProIntegrationsTestSimpleSharp.Src.Collections.SubPages
+﻿namespace VTProIntegrationsTestSimpleSharp.Src.Collections.SubPages
 {
     /// <summary>
     /// a collection of logic join numbers for the sub page.
     /// </summary>
-    internal static class TVManagementPage
+    internal static class TVManagementSubPage
     {
 
         /// <summary>
@@ -17,7 +11,22 @@ namespace VTProIntegrationsTestSimpleSharp.Src.Collections.SubPages
         /// </summary>
         public enum DigitalJoins : uint
         {
-            
+            // Button Joins
+            OnButtonPress = 13,
+            OffButtonPress = 14,
+
+            // Subpage Joins
+            PageVisibility = 15,
+        }
+
+        /// <summary>
+        /// The collection of Smart Graphic joins used in the sub page.
+        /// </summary>
+        public enum SmartJoins
+        {
+            // Smart Joins
+            SmartDPad = 1,
+            SmartKeypad = 2,
         }
 
     }
