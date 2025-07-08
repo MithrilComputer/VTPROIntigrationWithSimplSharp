@@ -31,34 +31,34 @@ namespace VTProIntegrationsTestSimpleSharp
             switch (args.Sig.Type)
             {
                 case eSigType.NA: // Unrecognized Input
-                    CrestronConsole.PrintLine($"Cannot process signal change. Device: {device.Name}; Signal:  {args.Sig.Name}");
+                    CrestronConsole.PrintLine($"Cannot process signal change. Device: {device.Name}; Signal: {args.Sig.Name}");
                     return;
 
                 case eSigType.Bool: // Digital Input
 
-                    if (args.Sig.Number == (uint)MainPage.DigitalJoins.TimeButtonPress)
+                    if (args.IsSignalSource(MainPage.DigitalJoins.TimeButtonPress))
                     {
-                        if (args.Sig.BoolValue == true)
+                        if (IsRisingEdge(args))
                         {
                             CrestronConsole.PrintLine("Time Button Pressed");
 
-                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
-                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true);
                         }
                     }
 
-                    if (args.Sig.Number == (uint)MainPage.DigitalJoins.WeatherButtonPress)
+                    if (args.IsSignalSource(MainPage.DigitalJoins.WeatherButtonPress))
                     {
-                        if (args.Sig.BoolValue == true)
+                        if (IsRisingEdge(args))
                         {
                             CrestronConsole.PrintLine("Weather Button Pressed");
 
-                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, true); // Enable Digital Join For Time Button
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, false); // Enable Digital Join For Weather Button
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, true); // Visibility Digital Join for The Weather Widget
-                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, false); // Visibility Digital Join for The Time Widget
+                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, true);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, false);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, true);
+                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, false);
                         }
                     }
 
@@ -66,21 +66,21 @@ namespace VTProIntegrationsTestSimpleSharp
 
                 case eSigType.UShort: // Analog Input
 
-                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.RedSliderTouchFeedback)
+                    if (args.IsSignalSource(MainPage.AnalogJoins.RedSliderTouchFeedback))
                     {
-                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, args.Sig.UShortValue); // Red value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, args.Sig.UShortValue);
                         CrestronConsole.PrintLine($"Color Red Input Changed: {args.Sig.UShortValue}");
                     }
 
-                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.BlueSliderTouchFeedback)
+                    if (args.IsSignalSource(MainPage.AnalogJoins.BlueSliderTouchFeedback))
                     {
-                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipBlue, args.Sig.UShortValue); // Blue value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipBlue, args.Sig.UShortValue);
                         CrestronConsole.PrintLine($"Color Blue Changed: {args.Sig.UShortValue}");
                     }
 
-                    if (args.Sig.Number == (uint)MainPage.AnalogJoins.GreenSliderTouchFeedback)
+                    if (args.IsSignalSource(MainPage.AnalogJoins.GreenSliderTouchFeedback))
                     {
-                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, args.Sig.UShortValue); // Green value for Color Chip
+                        SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, args.Sig.UShortValue);
                         CrestronConsole.PrintLine($"Color Green Changed: {args.Sig.UShortValue}");
                     }
 
@@ -88,17 +88,16 @@ namespace VTProIntegrationsTestSimpleSharp
 
                 case eSigType.String: // Serial Input
 
-                    if (args.Sig.Number == (uint)MainPage.SerialJoins.TextEntryOutput)
+                    if (args.IsSignalSource(MainPage.SerialJoins.TextEntryOutput))
                     {
-                        SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, args.Sig.StringValue); // Set the output serial to the input
-
+                        SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, args.Sig.StringValue);
                         CrestronConsole.PrintLine($"String Input Changed: {args.Sig.StringValue}");
                     }
 
                     break;
 
                 default:
-                    CrestronConsole.PrintLine($"Cannot process signal change. Device: {device.Name}; Signal:  {args.Sig.Name}");
+                    CrestronConsole.PrintLine($"Cannot process signal change. Device: {device.Name}; Signal: {args.Sig.Name}");
                     return;
             }
         }
@@ -125,7 +124,7 @@ namespace VTProIntegrationsTestSimpleSharp
             }
 
             // Check witch smart object was signaled
-            switch((TVManagementSubPage.SmartJoins)args.SmartObjectArgs.ID)
+            switch ((TVManagementSubPage.SmartJoins)args.SmartObjectArgs.ID)
             {
                 // Smart DPad Joins
                 case TVManagementSubPage.SmartJoins.SmartDPad: // Smart DPad Joins
@@ -134,19 +133,23 @@ namespace VTProIntegrationsTestSimpleSharp
                     switch (ParseSmartSig<SmartObjectDefinitions.DPad>(args.Sig.Name))
                     {
                         case SmartObjectDefinitions.DPad.Up:
-                            CrestronConsole.PrintLine("Smart DPad Up Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart DPad Up Pressed");
                             break;
 
                         case SmartObjectDefinitions.DPad.Down:
-                            CrestronConsole.PrintLine("Smart DPad Down Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart DPad Down Pressed");
                             break;  
 
                         case SmartObjectDefinitions.DPad.Left:
-                            CrestronConsole.PrintLine("Smart DPad Left Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart DPad Left Pressed");
                             break;
 
                         case SmartObjectDefinitions.DPad.Right:
-                            CrestronConsole.PrintLine("Smart DPad Right Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart DPad Right Pressed");
                             break;
                     }
                     break;
@@ -158,51 +161,63 @@ namespace VTProIntegrationsTestSimpleSharp
                     switch (ParseSmartSig<SmartObjectDefinitions.KeyPad>(args.Sig.Name))
                     {
                         case SmartObjectDefinitions.KeyPad.One:
-                            CrestronConsole.PrintLine("Smart Keypad One Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad One Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Two:
-                            CrestronConsole.PrintLine("Smart Keypad Two Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Two Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Three:
-                            CrestronConsole.PrintLine("Smart Keypad Three Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Three Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Four:
-                            CrestronConsole.PrintLine("Smart Keypad Four Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Four Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Five:
-                            CrestronConsole.PrintLine("Smart Keypad Five Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Five Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Six:
-                            CrestronConsole.PrintLine("Smart Keypad Six Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Six Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Seven:
-                            CrestronConsole.PrintLine("Smart Keypad Seven Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Seven Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Eight:
-                            CrestronConsole.PrintLine("Smart Keypad Eight Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Eight Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Nine:
-                            CrestronConsole.PrintLine("Smart Keypad Nine Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Nine Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Zero:
-                            CrestronConsole.PrintLine("Smart Keypad Zero Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Zero Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Misc_1:
-                            CrestronConsole.PrintLine("Smart Keypad Misc_1 Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Misc_1 Pressed");
                             break;
 
                         case SmartObjectDefinitions.KeyPad.Misc_2:
-                            CrestronConsole.PrintLine("Smart Keypad Misc_2 Pressed");
+                            if (IsSmartRisingEdge(args)) // Check for rising edge
+                                CrestronConsole.PrintLine("Smart Keypad Misc_2 Pressed");
                             break;
                     }
                     break;
@@ -262,7 +277,6 @@ namespace VTProIntegrationsTestSimpleSharp
         {
             device.StringInput[(uint)serialJoin].StringValue = value;
         }
-
 
         /// <summary>
         /// Parses a string input to a Smart Object Signal type.
@@ -327,6 +341,37 @@ namespace VTProIntegrationsTestSimpleSharp
             }
 
             throw new ArgumentException($"Invalid input string: {input}"); 
+        }
+
+        /// <summary>
+        /// Sees if a Smart Object button is pressed on a rising edge.
+        /// </summary>
+        /// <param name="args">The signal received</param>
+        /// <returns>Bool, If the signal was a rising edge</returns>
+        private static bool IsSmartRisingEdge(SmartObjectEventArgs args)
+        {
+            return args.SmartObjectArgs.BooleanOutput[args.Sig.Name].BoolValue;
+        }
+
+        /// <summary>
+        /// Sees if a button is pressed on a rising edge. (Not Smart Object)
+        /// </summary>
+        /// <param name="args">The signal received</param>
+        /// <returns>Bool, If the signal was a rising edge</returns>
+        private static bool IsRisingEdge(SigEventArgs args)
+        {
+            return args.Sig.BoolValue;
+        }
+
+        /// <summary>
+        /// Checks if the signal source is a specific input enum.
+        /// </summary>
+        /// <param name="args">The signal source</param>
+        /// <param name="inputEnum">The input enum</param>
+        /// <returns>If the source is the enum</returns>
+        public static bool IsSignalSource(this SigEventArgs args, Enum inputEnum)
+        {
+            return args.Sig.Number == Convert.ToUInt32(inputEnum);
         }
     }
 }

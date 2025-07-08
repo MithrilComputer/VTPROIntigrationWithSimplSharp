@@ -12,7 +12,6 @@ namespace VTProIntegrationsTestSimpleSharp
 {
     public class ControlSystem : CrestronControlSystem
     {
-
         /// <summary>
         /// Declare the XPanel for Smart Graphics device, Can be any touchpanel but ive chosen XpanelForSmartGraphics for this example.
         /// </summary>
@@ -51,10 +50,10 @@ namespace VTProIntegrationsTestSimpleSharp
         /// <summary>
         /// Configures a Smart Graphics panel by registering it, subscribing to events, and loading its SGD file.
         /// </summary>
-        /// <param name="SGDfile">The Smart Graphics definition file path.</param>
+        /// <param name="SGDFile">The Smart Graphics definition file path.</param>
         /// <param name="IPID">The IPID to assign to the XPanel.</param>
         /// <returns>The initialized and registered XpanelForSmartGraphics object.</returns>
-        private void SetupSmartPanel(BasicTriListWithSmartObject panel, string SGDfile)
+        private void SetupSmartPanel(BasicTriListWithSmartObject panel, string SGDFile)
         {
             // Subscribe to the events for the XPanel.
             panel.SigChange += XPanel_SigChange;
@@ -68,13 +67,13 @@ namespace VTProIntegrationsTestSimpleSharp
 
             // Set the XPanel to use the SDG file.
             // Check if the SDG file exists before loading it.
-            if (!File.Exists(SGDfile))
+            if (!File.Exists(SGDFile))
             {
-                throw new FileNotFoundException($"SDG file not found: {SGDfile};");
+                throw new FileNotFoundException($"SDG file not found: {SGDFile};");
             }
-            else if (panel.LoadSmartObjects(SGDfile) <= 0)
+            else if (panel.LoadSmartObjects(SGDFile) <= 0)
             {
-                throw new WarningException($"Failed to load smart object -> File: {SGDfile}; Device: {panel.Name};");
+                throw new WarningException($"Failed to load smart object -> File: {SGDFile}; Device: {panel.Name};");
             }
 
             // subscribe to the SmartObject signal changes.
@@ -102,7 +101,7 @@ namespace VTProIntegrationsTestSimpleSharp
                 onlineStatus = "Offline";
             }
 
-            CrestronConsole.PrintLine($"Device {currentDevice.Name}:{currentDevice.ID} | Status: {onlineStatus}", nameof(currentDevice), nameof(onlineStatus));
+            CrestronConsole.PrintLine($"Device {currentDevice.Name}:{currentDevice.ID} | Status: {onlineStatus}");
         }
 
         /// <summary>

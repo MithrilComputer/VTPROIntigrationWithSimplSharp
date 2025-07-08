@@ -138,8 +138,8 @@
   <ItemGroup>
     <Compile Include="Src\Collections\Pages\MediaPage.cs" />
     <Compile Include="Src\Collections\SmartObjectDefinitions.cs" />
-    <Compile Include="Src\Collections\SubPages\CurtanManagmentPage.cs" />
-    <Compile Include="Src\Collections\SubPages\TVManagmentPage.cs" />
+    <Compile Include="Src\Collections\SubPages\CurtanManagmentSubPage.cs" />
+    <Compile Include="Src\Collections\SubPages\TVManagmentSubPage.cs" />
     <Compile Include="Src\Service\ControlSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Collections\Pages\MainPage.cs" />
