@@ -7,15 +7,21 @@ using Crestron.SimplSharpPro.UI;
 using System.IO;
 using System.ComponentModel;
 using System.Collections.Generic;
+using VTProIntigrationTestSimpleSharp.Src.Service;
 
 namespace VTProIntegrationsTestSimpleSharp
 {
     public class ControlSystem : CrestronControlSystem
     {
         /// <summary>
-        /// Declare the XPanel for Smart Graphics device, Can be any touchpanel but ive chosen XpanelForSmartGraphics for this example.
+        /// The main XPanel, XpanelForSmartGraphics for this example.
         /// </summary>
         XpanelForSmartGraphics xPanelOne;
+
+        /// <summary>
+        /// The LogicController, which handles the logic for the touchpanel.
+        /// </summary>
+        LogicController logicController;
 
         ///<summary> Ignore for now, 
         ///Location of the SDG file for the XPanel.
@@ -38,12 +44,26 @@ namespace VTProIntegrationsTestSimpleSharp
                 // Register the XPanel and smart Graphics.
                 SetupSmartPanel(xPanelOne, SDGFile);
 
+                logicController = new LogicController();
+
                 // Subscribe to the program status event handler.
                 CrestronEnvironment.ProgramStatusEventHandler += new ProgramStatusEventHandler(_ControllerProgramEventHandler);
             }
             catch (Exception e)
             {
                 ErrorLog.Error("Error in the constructor: {0}", e.Message);
+            }
+        }
+
+        public override void InitializeSystem()
+        {
+            try
+            {
+                logicController.InitializePanelLogic(xPanelOne);
+            }
+            catch (Exception e)
+            {
+                ErrorLog.Error("Error in InitializeSystem: {0}", e.Message);
             }
         }
 
@@ -83,11 +103,11 @@ namespace VTProIntegrationsTestSimpleSharp
             }
         }
 
-        /// <summary> 
-        /// This method is called when the XPanel's Online Status changes.
+        /// <summary>
+        /// This method is called when the XPanel's online status changes.
         /// </summary>
-        /// <param name="currentDevice">The Device that changed its online status.</param>
-        /// <param name="args">The online status.</param>
+        /// <param name="currentDevice"></param>
+        /// <param name="args"></param>
         private void XPanel_OnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
         {
             string onlineStatus;
@@ -122,18 +142,6 @@ namespace VTProIntegrationsTestSimpleSharp
         private void Xpanel_SmartGraphicsSigChange(GenericBase currentDevice, SmartObjectEventArgs args)
         {
             SignalProcessor.ProcessSmartGraphicsChange(currentDevice, args);
-        }
-
-        public override void InitializeSystem()
-        {
-            try
-            {
-                SignalProcessor.Initialize(xPanelOne);
-            }
-            catch (Exception e)
-            {
-                ErrorLog.Error("Error in InitializeSystem: {0}", e.Message);
-            }
         }
 
         /// <summary>
@@ -180,6 +188,9 @@ namespace VTProIntegrationsTestSimpleSharp
             // Clean up the XPanel if it exists and is registered.
             if (xPanelOne != null && xPanelOne.Registered)
             {
+                // Clear the logic controller.
+                logicController = null;
+
                 // Unsubscribe to all XPanel events.
                 xPanelOne.SigChange -= XPanel_SigChange;
                 xPanelOne.OnlineStatusChange -= XPanel_OnlineStatusChange;

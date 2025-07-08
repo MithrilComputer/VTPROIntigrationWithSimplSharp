@@ -2,9 +2,13 @@
 using Crestron.SimplSharpPro;
 using Crestron.SimplSharpPro.DeviceSupport;
 using System;
+using System.Security.Cryptography;
+using System.Security.Policy;
 using VTProIntegrationsTestSimpleSharp.Src.Collections;
 using VTProIntegrationsTestSimpleSharp.Src.Collections.SubPages;
 using VTProIntigrationTestSimpleSharp.Src.Collections;
+using VTProIntigrationTestSimpleSharp.Src.Utility;
+using VTProIntigrationTestSimpleSharp.Src.Utility.Dispatchers;
 
 namespace VTProIntegrationsTestSimpleSharp
 {
@@ -30,42 +34,22 @@ namespace VTProIntegrationsTestSimpleSharp
             // Check what type of signal has changed and process accordingly.
             switch (args.Sig.Type)
             {
-                case eSigType.NA: // Unrecognized Input
+                case eSigType.NA: // Unrecognized Change
                     CrestronConsole.PrintLine($"Cannot process signal change. Device: {device.Name}; Signal: {args.Sig.Name}");
                     return;
 
-                case eSigType.Bool: // Digital Input
-
-                    if (args.IsSignalSource(MainPage.DigitalJoins.TimeButtonPress))
+                case eSigType.Bool: // Digital Change
+                    if(DigitalDispatcher._buttonDispatch.TryGetValue
+                        (args.Sig.Number, out Action<BasicTriList, SigEventArgs> action))
                     {
-                        if (IsRisingEdge(args))
-                        {
-                            CrestronConsole.PrintLine("Time Button Pressed");
-
-                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true);
-                        }
-                    }
-
-                    if (args.IsSignalSource(MainPage.DigitalJoins.WeatherButtonPress))
-                    {
-                        if (IsRisingEdge(args))
-                        {
-                            CrestronConsole.PrintLine("Weather Button Pressed");
-
-                            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, true);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, false);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, true);
-                            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, false);
-                        }
+                        action(device, args);
                     }
 
                     break;
 
-                case eSigType.UShort: // Analog Input
-
+                case eSigType.UShort: // Analog Change
+                    /*
+                     
                     if (args.IsSignalSource(MainPage.AnalogJoins.RedSliderTouchFeedback))
                     {
                         SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, args.Sig.UShortValue);
@@ -83,17 +67,17 @@ namespace VTProIntegrationsTestSimpleSharp
                         SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, args.Sig.UShortValue);
                         CrestronConsole.PrintLine($"Color Green Changed: {args.Sig.UShortValue}");
                     }
-
+                    */
                     break;
 
-                case eSigType.String: // Serial Input
-
+                case eSigType.String: // Serial Change
+                    /*
                     if (args.IsSignalSource(MainPage.SerialJoins.TextEntryOutput))
                     {
                         SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, args.Sig.StringValue);
                         CrestronConsole.PrintLine($"String Input Changed: {args.Sig.StringValue}");
                     }
-
+                    */
                     break;
 
                 default:
@@ -228,57 +212,6 @@ namespace VTProIntegrationsTestSimpleSharp
         }
 
         /// <summary>
-        /// Initializes the Touchpanel logic for the program.
-        ///</summary>
-        /// <param name="device">The Touchpanel logic to Initialize </param>
-        public static void Initialize(BasicTriList device)
-        {
-            SetDigitalJoin(device, MainPage.DigitalJoins.TimeButtonEnable, false); // Enable Digital Join For Time Button
-            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherButtonEnable, true); // Enable Digital Join For Weather Button
-            SetDigitalJoin(device, MainPage.DigitalJoins.WeatherWidgetVisibility, false); // Visibility Digital Join for The Weather Widget
-            SetDigitalJoin(device, MainPage.DigitalJoins.DateAndTimeWidgetVisibility, true); // Visibility Digital Join for The Time Widget
-
-            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipRed, 255);
-            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipGreen, 255);
-            SetAnalogJoin(device, MainPage.AnalogJoins.ColorChipBlue, 255);
-
-            SetSerialJoin(device, MainPage.SerialJoins.FormattedTextInput, "Hello World!"); // Set the output serial to the input
-        }
-
-        /// <summary>
-        /// Sets a digital join on the device.
-        /// </summary>
-        /// <param name="device"> The device to set the digital join on.</param>
-        /// <param name="digitalJoin"> The digital join to set.</param>
-        /// <param name="value"> The value to set the digital join to.</param>
-        private static void SetDigitalJoin(BasicTriList device, MainPage.DigitalJoins digitalJoin, bool value)
-        {
-            device.BooleanInput[(uint)digitalJoin].BoolValue = value;
-        }
-
-        /// <summary>
-        /// Sets a analog join on the device.
-        /// </summary>
-        /// <param name="device"> The device to set the analogJoin join on.</param>
-        /// <param name="analogJoin"> The analogJoin join to set.</param>
-        /// <param name="value"> The value to set the analogJoin join to.</param>
-        private static void SetAnalogJoin(BasicTriList device, MainPage.AnalogJoins analogJoin, ushort value)
-        {
-            device.UShortInput[(uint)analogJoin].UShortValue = value;
-        }
-
-        /// <summary>
-        /// Sets a serial join on the device.
-        /// </summary>
-        /// <param name="device"> The device to set the serial join on.</param>
-        /// <param name="serialJoin"> The serial join to set.</param>
-        /// <param name="value"> The value to set the serial join to.</param>
-        private static void SetSerialJoin(BasicTriList device, MainPage.SerialJoins serialJoin, string value)
-        {
-            device.StringInput[(uint)serialJoin].StringValue = value;
-        }
-
-        /// <summary>
         /// Parses a string input to a Smart Object Signal type.
         /// </summary>
         /// <typeparam name="T">The Smart Object Enum Type</typeparam>
@@ -351,16 +284,6 @@ namespace VTProIntegrationsTestSimpleSharp
         private static bool IsSmartRisingEdge(SmartObjectEventArgs args)
         {
             return args.SmartObjectArgs.BooleanOutput[args.Sig.Name].BoolValue;
-        }
-
-        /// <summary>
-        /// Sees if a button is pressed on a rising edge. (Not Smart Object)
-        /// </summary>
-        /// <param name="args">The signal received</param>
-        /// <returns>Bool, If the signal was a rising edge</returns>
-        private static bool IsRisingEdge(SigEventArgs args)
-        {
-            return args.Sig.BoolValue;
         }
 
         /// <summary>

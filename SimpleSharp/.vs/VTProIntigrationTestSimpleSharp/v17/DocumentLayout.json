@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\utility\\dispatchers\\digitaldispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\utility\\dispatchers\\digitaldispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\service\\controlsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\service\\controlsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\service\\logiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\service\\logiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\src\\utility\\signalprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\utility\\signalprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\utility\\logichandelers\\buttonlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\utility\\logichandelers\\buttonlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|d:\\repositories\\crestron\\vtpro intigration test\\vtprointigrationwithsimplsharp\\simplesharp\\src\\utility\\helpers\\ghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0C480D7-DD11-42EF-AE53-54B2BAD6E39C}|VTProIntegrationsTestSimpleSharp.csproj|solutionrelative:src\\utility\\helpers\\ghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +34,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 305,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "GHelpers.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\Helpers\\GHelpers.cs",
+              "RelativeDocumentMoniker": "Src\\Utility\\Helpers\\GHelpers.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\Helpers\\GHelpers.cs",
+              "RelativeToolTip": "Src\\Utility\\Helpers\\GHelpers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T19:13:12.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ButtonLogic.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\LogicHandelers\\ButtonLogic.cs",
+              "RelativeDocumentMoniker": "Src\\Utility\\LogicHandelers\\ButtonLogic.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\LogicHandelers\\ButtonLogic.cs",
+              "RelativeToolTip": "Src\\Utility\\LogicHandelers\\ButtonLogic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T17:13:56.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SignalProcessor.cs",
               "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
               "RelativeDocumentMoniker": "Src\\Utility\\SignalProcessor.cs",
               "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\SignalProcessor.cs",
               "RelativeToolTip": "Src\\Utility\\SignalProcessor.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAuwGMBAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABYBAAAAAAAAAAAgwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T16:13:24.063Z",
               "EditorCaption": ""
@@ -36,14 +78,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DigitalDispatcher.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\Dispatchers\\DigitalDispatcher.cs",
+              "RelativeDocumentMoniker": "Src\\Utility\\Dispatchers\\DigitalDispatcher.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Utility\\Dispatchers\\DigitalDispatcher.cs",
+              "RelativeToolTip": "Src\\Utility\\Dispatchers\\DigitalDispatcher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T17:30:39.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ControlSystem.cs",
               "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Service\\ControlSystem.cs",
               "RelativeDocumentMoniker": "Src\\Service\\ControlSystem.cs",
               "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Service\\ControlSystem.cs",
               "RelativeToolTip": "Src\\Service\\ControlSystem.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAgwIsAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAADwv6oAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T15:56:47.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LogicController.cs",
+              "DocumentMoniker": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Service\\LogicController.cs",
+              "RelativeDocumentMoniker": "Src\\Service\\LogicController.cs",
+              "ToolTip": "D:\\Repositories\\Crestron\\VTPRO Intigration Test\\VTPROIntigrationWithSimplSharp\\SimpleSharp\\Src\\Service\\LogicController.cs",
+              "RelativeToolTip": "Src\\Service\\LogicController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T19:10:05.942Z",
               "EditorCaption": ""
             }
           ]
